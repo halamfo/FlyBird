@@ -7,15 +7,16 @@
 //
 
 import UIKit
-
+import AVFoundation
 class ViewController: UIViewController {
     var bird = UIImageView()
-
+    var audioplayer = AVAudioPlayer()
     override func viewDidLoad() {
         super.viewDidLoad()
         drawjungle()
         addBird()
         flyupdown()
+        playsong()
     }
     func drawjungle(){
         let background = UIImageView(image: UIImage(named: "jungle.jpg"))
@@ -56,5 +57,16 @@ class ViewController: UIViewController {
                 }
         }
     }
+    func playsong()
+    {
+        let filepath = NSBundle.mainBundle().pathForResource("A+ – Chào Mào Mái Hót", ofType: ".mp3")
+        let url = NSURL(fileURLWithPath: filepath!)
+        audioplayer = try! AVAudioPlayer(contentsOfURL: url)
+        audioplayer.prepareToPlay()
+        audioplayer.play()
+    }
+    
+    
+
 }
 
